@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const myName = require("./json-data/json-data.js");
 
 const urlLogger = (request, response, next) => {
   console.log("Request URL:", request.url);
@@ -15,8 +16,13 @@ app.use(urlLogger, timeLogger);
 app.use(express.static("public"));
 
 app.get("/", (request, response) => {});
+
 app.get("/json", (request, response) => {
-  response.status(200).json({ name: "Kevin" });
+  response.status(200).json(myName);
+});
+
+app.use(function(req, res, next) {
+  res.status(404).send("Sorry can't find that!");
 });
 
 app.listen(3000, () => {
