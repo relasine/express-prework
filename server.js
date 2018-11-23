@@ -22,7 +22,11 @@ app.get("/json", (request, response) => {
 });
 
 app.use(function(req, res, next) {
-  res.status(404).send("Sorry can't find that!");
+  res
+    .status(404)
+    .send(
+      "Not all who wander are lost... except you. You're definitely lost. Get help."
+    );
 });
 
 app.listen(3000, () => {
